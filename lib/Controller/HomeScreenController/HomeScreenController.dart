@@ -13,6 +13,7 @@ class HomeScreenController extends GetxController {
   forGetResumes() {
     resumes = storageBox.read("resumes") ?? [];
     print("Resumes at Init:${resumes}");
+    update();
   }
 
   forDeleteResume({int? index}) async {

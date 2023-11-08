@@ -17,14 +17,20 @@ class Home_Screen extends StatefulWidget {
 }
 
 class _Home_ScreenState extends State<Home_Screen> {
+  Color MyColor = const Color(0xff0475FF);
+
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
+    double _height = MediaQuery.of(context).size.height;
+
     return GetBuilder(
         init: HomeScreenController(),
         builder: (homescreencontroller) {
           return Scaffold(
             appBar: AppBar(
               title: const Text("Resume Builder"),
+              backgroundColor: MyColor,
               centerTitle: true,
               elevation: 0,
             ),
@@ -35,9 +41,9 @@ class _Home_ScreenState extends State<Home_Screen> {
                   homescreencontroller.onInit();
                 });
               },
-              child: const Icon(
+              child: Icon(
                 Icons.add,
-                size: 30,
+                size: 30.sp,
               ),
             ),
             body: Column(
@@ -69,7 +75,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                               },
                               child: Container(
                                 margin: EdgeInsets.symmetric(
-                                    horizontal: 5.sp, vertical: 5.sp),
+                                    horizontal: _width * 0.03,
+                                    vertical: _height * 0.01),
                                 padding: EdgeInsets.all(10.sp),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
@@ -91,7 +98,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                 fontSize: 18.sp,
                                                 fontWeight: FontWeight.bold)),
                                         SizedBox(
-                                          height: 5.sp,
+                                          height: _height * 0.01,
                                         ),
                                         Text("${decoedMap["time"]}"),
                                       ],
@@ -102,7 +109,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                       size: 20.sp,
                                     ),
                                     SizedBox(
-                                      width: 5.sp,
+                                      width: _width * 0.05,
                                     ),
                                     GestureDetector(
                                       onTap: () async {
