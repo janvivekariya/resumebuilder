@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:resumebuilder/Screens/Carrier_Onjective_Screen/Carrier_Objective_Screen.dart';
 import 'package:resumebuilder/Screens/Contact_Info_Screen/Contact_Info_Screen.dart';
+import 'package:resumebuilder/Screens/Experience_Screen/Experience_Screen.dart';
 import 'package:resumebuilder/Screens/Home_Screen/Home_Screen.dart';
 import 'package:resumebuilder/Screens/Option_Screen/Option_Screen.dart';
 import 'package:resumebuilder/Screens/Personal_Details_Screen/Personal_Detail_Screen.dart';
+import 'package:resumebuilder/Screens/Technical_Skill_Screen/Technical_Skills_Screen.dart';
 
 
 class Routes {
@@ -37,6 +39,18 @@ class Routes {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => Personal_Detail_Screen(),
+        );
+
+      case Experience_Screen.RouteName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => Experience_Screen(),
+        );
+
+      case Technical_Skills_Screen.RouteName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => Technical_Skills_Screen(),
         );
 
       default:
