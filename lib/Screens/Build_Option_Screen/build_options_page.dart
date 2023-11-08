@@ -18,6 +18,11 @@ class _Build_Options_PageState extends State<Build_Options_Page> {
       "option_name": "Contact info",
       "image": "assets/icons/contact_detail-removebg-preview (1).png",
     },
+    {
+      "id": 2,
+      "option_name": "Carrier Objective",
+      "image": "assets/icons/briefcase.png",
+    },
 
   ];
 
