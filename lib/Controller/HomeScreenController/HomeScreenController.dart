@@ -15,4 +15,9 @@ class HomeScreenController extends GetxController {
     print("Resumes at Init:${resumes}");
   }
 
+  forDeleteResume({int? index}) async {
+    resumes!.removeAt(index!);
+    await storageBox.write("resumes", resumes!);
+    update();
+  }
 }

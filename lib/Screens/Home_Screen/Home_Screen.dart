@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:resumebuilder/Controller/HomeScreenController/HomeScreenController.dart';
 import 'package:resumebuilder/Screens/Option_Screen/Option_Screen.dart';
+import 'package:resumebuilder/main.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
@@ -30,7 +31,9 @@ class _Home_ScreenState extends State<Home_Screen> {
             floatingActionButton: FloatingActionButton(
               onPressed: () {
                 Navigator.pushNamed(context, Option_Screen.RouteName,
-                    arguments: {"index": 0});
+                    arguments: {"index": 0}).then((value) {
+                  homescreencontroller.onInit();
+                });
               },
               child: const Icon(
                 Icons.add,
@@ -60,7 +63,9 @@ class _Home_ScreenState extends State<Home_Screen> {
                               onTap: () {
                                 Navigator.pushNamed(
                                     context, Option_Screen.RouteName,
-                                    arguments: {"index": index});
+                                    arguments: {"index": index}).then((value) {
+                                  homescreencontroller.onInit();
+                                });
                               },
                               child: Container(
                                 margin: EdgeInsets.symmetric(
@@ -94,14 +99,20 @@ class _Home_ScreenState extends State<Home_Screen> {
                                     Spacer(),
                                     Icon(
                                       Icons.edit,
-                                      size: 18.sp,
+                                      size: 20.sp,
                                     ),
                                     SizedBox(
                                       width: 5.sp,
                                     ),
-                                    Icon(
-                                      Icons.delete,
-                                      size: 18.sp,
+                                    GestureDetector(
+                                      onTap: () async {
+                                        homescreencontroller.forDeleteResume(
+                                            index: index);
+                                      },
+                                      child: Icon(
+                                        Icons.delete,
+                                        size: 20.sp,
+                                      ),
                                     )
                                   ],
                                 ),

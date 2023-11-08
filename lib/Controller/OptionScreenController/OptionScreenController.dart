@@ -14,6 +14,7 @@ import 'package:resumebuilder/Screens/Education_Screen/Education_Screen.dart';
 import 'package:resumebuilder/Screens/Experience_Screen/Experience_Screen.dart';
 import 'package:resumebuilder/Screens/Personal_Details_Screen/Personal_Detail_Screen.dart';
 import 'package:resumebuilder/Screens/Technical_Skill_Screen/Technical_Skills_Screen.dart';
+import 'package:resumebuilder/main.dart';
 
 class OptionScreenController extends GetxController {
   final int index;
@@ -79,6 +80,8 @@ class OptionScreenController extends GetxController {
     TechnicalScreenController technicalScreenController =
         Get.put(TechnicalScreenController());
     HomeScreenController homeScreenController = Get.put(HomeScreenController());
+
+    homeScreenController.resumes = storageBox.read("resumes") ?? [];
 
     if (homeScreenController.resumes!.isEmpty) {
       null;
