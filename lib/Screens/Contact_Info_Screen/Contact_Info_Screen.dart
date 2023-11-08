@@ -34,417 +34,23 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
               centerTitle: true,
               elevation: 0,
             ),
-            body: Column(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    width: _width,
-                    alignment: const Alignment(0, 0.5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+            body: Container(
+              height: double.infinity,
+              decoration: BoxDecoration(
+                  color: const Color(0xffEDEDED),
+                  borderRadius: BorderRadius.circular(10.r)),
+              child: IndexedStack(
+                index: initialIndex,
+                children: [
+                  SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: InkWell(
-                            splashFactory: InkRipple.splashFactory,
-                            splashColor: Colors.white.withOpacity(0.2),
-                            onTap: () {
-                              setState(() {
-                                initialIndex = 0;
-                              });
-                            },
-                            child: Ink(
-                              color: MyColor,
-                              child: Container(
-                                alignment: Alignment.bottomCenter,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    const Spacer(),
-                                    const Text(
-                                      "Contact",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 17,
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    Container(
-                                      color: (initialIndex == 0)
-                                          ? Colors.yellow
-                                          : MyColor,
-                                      height: 2,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: InkWell(
-                            splashFactory: InkRipple.splashFactory,
-                            splashColor: Colors.white.withOpacity(0.2),
-                            onTap: () {
-                              setState(() {
-                                initialIndex = 1;
-                              });
-                            },
-                            child: Ink(
-                              color: MyColor,
-                              child: Container(
-                                alignment: Alignment.bottomCenter,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    const Spacer(),
-                                    const Text(
-                                      "Photo",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 17,
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    Container(
-                                      color: (initialIndex == 1)
-                                          ? Colors.yellow
-                                          : MyColor,
-                                      height: 2,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 18,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: const Color(0xffEDEDED),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    child: IndexedStack(
-                      index: initialIndex,
-                      children: [
-                        SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: _height * 0.58,
-                                margin: const EdgeInsets.all(20),
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10.r),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black.withOpacity(0.5),
-                                          offset: Offset(2, 2),
-                                          spreadRadius: 1.sp,
-                                          blurRadius: 1.sp)
-                                    ]),
-                                child: SingleChildScrollView(
-                                  physics: const BouncingScrollPhysics(),
-                                  child: Form(
-                                    key: contactFormKey,
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 5.sp,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Image.asset(
-                                                "assets/icons/user.png",
-                                                height: _height * 0.048,
-                                              ),
-                                            ),
-                                            SizedBox(width: _width * 0.02),
-                                            Expanded(
-                                              flex: 4,
-                                              child: TextFormField(
-                                                controller:
-                                                    contactinfocontroller
-                                                        .nameController,
-                                                validator: (val) {
-                                                  if (val!.isEmpty) {
-                                                    return "Enter your Name First...";
-                                                  }
-                                                  return null;
-                                                },
-                                                onSaved: (val) {
-                                                  contactinfocontroller.forName(
-                                                      value: val);
-                                                },
-                                                decoration: InputDecoration(
-                                                    hintText: "Name",
-                                                    label: Text("Name"),
-                                                    focusedBorder: OutlineInputBorder(
-                                                        borderRadius:BorderRadius.all(Radius.circular(10.r))),
-                                                    enabledBorder: OutlineInputBorder(
-                                                        borderRadius:BorderRadius.all(Radius.circular(10.r)))),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 5.sp,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Image.asset(
-                                                "assets/icons/email.png",
-                                                height: _height * 0.048,
-                                              ),
-                                            ),
-                                            SizedBox(width: _width * 0.02),
-                                            Expanded(
-                                              flex: 4,
-                                              child: TextFormField(
-                                                controller:
-                                                    contactinfocontroller
-                                                        .emailController,
-                                                validator: (val) {
-                                                  if (val!.isEmpty) {
-                                                    return "Enter your Email First...";
-                                                  }
-                                                  return null;
-                                                },
-                                                onSaved: (val) {
-                                                  contactinfocontroller
-                                                      .forEmail(value: val);
-                                                },
-                                                keyboardType:
-                                                    TextInputType.emailAddress,
-                                                decoration:
-                                                     InputDecoration(
-                                                  hintText: "Email",
-                                                  label: Text("Email"),
-                                                         focusedBorder: OutlineInputBorder(
-                                                             borderRadius:BorderRadius.all(Radius.circular(10.r))),
-                                                        enabledBorder: OutlineInputBorder(
-                                                            borderRadius:BorderRadius.all(Radius.circular(10.r)))
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 5.sp,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Image.asset(
-                                                "assets/icons/smartphone-call.png",
-                                                height: _height * 0.048,
-                                              ),
-                                            ),
-                                            SizedBox(width: _width * 0.02),
-                                            Expanded(
-                                              flex: 4,
-                                              child: TextFormField(
-                                                controller:
-                                                    contactinfocontroller
-                                                        .phoneController,
-                                                validator: (val) {
-                                                  if (val!.isEmpty) {
-                                                    return "Enter your Phone First...";
-                                                  }
-                                                  return null;
-                                                },
-                                                onSaved: (val) {
-                                                  contactinfocontroller
-                                                      .forPhone(value: val);
-                                                },
-                                                keyboardType:
-                                                    TextInputType.phone,
-                                                decoration:
-                                                     InputDecoration(
-                                                  hintText: "Phone",
-                                                  label: Text("Phone"),
-                                                         focusedBorder: OutlineInputBorder(
-                                                             borderRadius:BorderRadius.all(Radius.circular(10.r))),
-                                                        enabledBorder: OutlineInputBorder(
-                                                            borderRadius:BorderRadius.all(Radius.circular(10.r)))
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 5.sp,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Image.asset(
-                                                "assets/icons/pin.png",
-                                                height: _height * 0.048,
-                                              ),
-                                            ),
-                                            SizedBox(width: _width * 0.02),
-                                            Expanded(
-                                              flex: 4,
-                                              child: TextFormField(
-                                                controller:
-                                                    contactinfocontroller
-                                                        .address1Controller,
-                                                validator: (val) {
-                                                  if (val!.isEmpty) {
-                                                    return "Enter your Address First...";
-                                                  }
-                                                  return null;
-                                                },
-                                                onSaved: (val) {
-                                                  contactinfocontroller
-                                                      .forAddress1(value: val);
-                                                },
-                                                decoration:
-                                                     InputDecoration(
-                                                  hintText:
-                                                      "Address (Street, Building No)",
-                                                  label: Text(
-                                                      "Address (Street, Building No)"),
-                                                         focusedBorder: OutlineInputBorder(
-                                                             borderRadius:BorderRadius.all(Radius.circular(10.r))),
-                                                        enabledBorder: OutlineInputBorder(
-                                                            borderRadius:BorderRadius.all(Radius.circular(10.r)))
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 5.sp,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(child: Container()),
-                                            SizedBox(width: _width * 0.02),
-                                            Expanded(
-                                              flex: 4,
-                                              child: TextFormField(
-                                                controller:
-                                                    contactinfocontroller
-                                                        .address2Controller,
-                                                onSaved: (val) {
-                                                  contactinfocontroller
-                                                      .forAddress2(value: val);
-                                                },
-                                                decoration:
-                                                     InputDecoration(
-                                                  hintText: "Address Line 2",
-                                                  label: Text("Address Line 2"),
-                                                         focusedBorder: OutlineInputBorder(
-                                                             borderRadius:BorderRadius.all(Radius.circular(10.r))),
-                                                        enabledBorder: OutlineInputBorder(
-                                                            borderRadius:BorderRadius.all(Radius.circular(10.r)))
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 5.sp,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(child: Container()),
-                                            SizedBox(width: _width * 0.02),
-                                            Expanded(
-                                              flex: 4,
-                                              child: TextFormField(
-                                                controller:
-                                                    contactinfocontroller
-                                                        .address3Controller,
-                                                onSaved: (val) {
-                                                  contactinfocontroller
-                                                      .forAddress3(value: val);
-                                                },
-                                                decoration:
-                                                     InputDecoration(
-                                                  hintText: "Address Line 3",
-                                                  label: Text("Address Line 3"),
-                                                         focusedBorder: OutlineInputBorder(
-                                                             borderRadius:BorderRadius.all(Radius.circular(10.r))),
-                                                        enabledBorder: OutlineInputBorder(
-                                                            borderRadius:BorderRadius.all(Radius.circular(10.r)))
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: _height * 0.02),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      if (contactFormKey.currentState!
-                                          .validate()) {
-                                        contactFormKey.currentState!.save();
-                                      }
-                                      Navigator.pop(context);
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      primary: MyColor,
-                                    ),
-                                    child: const Text("Save"),
-                                  ),
-                                  ElevatedButton(
-                                      onPressed: () {
-                                        contactFormKey.currentState!.reset();
-
-                                        contactinfocontroller.nameController
-                                            .clear();
-                                        contactinfocontroller.emailController
-                                            .clear();
-                                        contactinfocontroller.phoneController
-                                            .clear();
-                                        contactinfocontroller.address1Controller
-                                            .clear();
-                                        contactinfocontroller.address2Controller
-                                            .clear();
-                                        contactinfocontroller.address3Controller
-                                            .clear();
-                                        setState(() {
-                                          contactinfocontroller.name = null;
-                                          contactinfocontroller.email = null;
-                                          contactinfocontroller.phone = null;
-                                          contactinfocontroller.address1 = null;
-                                          contactinfocontroller.address2 = null;
-                                          contactinfocontroller.address3 = null;
-                                        });
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        primary: MyColor,
-                                      ),
-                                      child: const Text("Clear")),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
                         Container(
-                          height: _height * 0.29,
-                          width: _width,
+                          height: _height * 0.58,
                           margin: const EdgeInsets.all(20),
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 15),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10.r),
@@ -455,78 +61,351 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                     spreadRadius: 1.sp,
                                     blurRadius: 1.sp)
                               ]),
-                          alignment: Alignment.center,
-                          child: Stack(
-                            alignment: Alignment.bottomRight,
-                            children: [
-                              CircleAvatar(
-                                backgroundImage: (contactinfocontroller.image !=
-                                        null)
-                                    ? FileImage(contactinfocontroller.image!)
-                                    : null,
-                                radius: 60,
-                                backgroundColor: const Color(0xffC4C4C4),
-                                child: (contactinfocontroller.image == null)
-                                    ? const Text(
-                                        "ADD",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
+                          child: SingleChildScrollView(
+                            physics: const BouncingScrollPhysics(),
+                            child: Form(
+                              key: contactFormKey,
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 15.sp,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Image.asset(
+                                          "assets/icons/user.png",
+                                          height: _height * 0.048,
                                         ),
-                                      )
-                                    : const Text(""),
+                                      ),
+                                      SizedBox(width: _width * 0.02),
+                                      Expanded(
+                                        flex: 4,
+                                        child: TextFormField(
+                                          controller:
+                                              contactinfocontroller
+                                                  .nameController,
+                                          validator: (val) {
+                                            if (val!.isEmpty) {
+                                              return "Enter your Name First...";
+                                            }
+                                            return null;
+                                          },
+                                          onSaved: (val) {
+                                            contactinfocontroller.forName(
+                                                value: val);
+                                          },
+                                          decoration: InputDecoration(
+                                            hintText: "Name",
+                                            border: OutlineInputBorder(),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 5.sp,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Image.asset(
+                                          "assets/icons/email.png",
+                                          height: _height * 0.048,
+                                        ),
+                                      ),
+                                      SizedBox(width: _width * 0.02),
+                                      Expanded(
+                                        flex: 4,
+                                        child: TextFormField(
+                                          controller:
+                                              contactinfocontroller
+                                                  .emailController,
+                                          validator: (val) {
+                                            if (val!.isEmpty) {
+                                              return "Enter your Email First...";
+                                            }
+                                            return null;
+                                          },
+                                          onSaved: (val) {
+                                            contactinfocontroller
+                                                .forEmail(value: val);
+                                          },
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          decoration: InputDecoration(
+                                            hintText: "Email",
+                                            border: OutlineInputBorder(),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 5.sp,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Image.asset(
+                                          "assets/icons/smartphone-call.png",
+                                          height: _height * 0.048,
+                                        ),
+                                      ),
+                                      SizedBox(width: _width * 0.02),
+                                      Expanded(
+                                        flex: 4,
+                                        child: TextFormField(
+                                          controller:
+                                              contactinfocontroller
+                                                  .phoneController,
+                                          validator: (val) {
+                                            if (val!.isEmpty) {
+                                              return "Enter your Phone First...";
+                                            }
+                                            return null;
+                                          },
+                                          onSaved: (val) {
+                                            contactinfocontroller
+                                                .forPhone(value: val);
+                                          },
+                                          keyboardType:
+                                              TextInputType.phone,
+                                          decoration: InputDecoration(
+                                            hintText: "Phone",
+                                            border: OutlineInputBorder(),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 5.sp,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Image.asset(
+                                          "assets/icons/pin.png",
+                                          height: _height * 0.048,
+                                        ),
+                                      ),
+                                      SizedBox(width: _width * 0.02),
+                                      Expanded(
+                                        flex: 4,
+                                        child: TextFormField(
+                                          controller:
+                                              contactinfocontroller
+                                                  .address1Controller,
+                                          validator: (val) {
+                                            if (val!.isEmpty) {
+                                              return "Enter your Address First...";
+                                            }
+                                            return null;
+                                          },
+                                          onSaved: (val) {
+                                            contactinfocontroller
+                                                .forAddress1(value: val);
+                                          },
+                                          decoration: InputDecoration(
+                                            hintText:
+                                                "Address (Street, Building No)",
+                                            border: OutlineInputBorder(),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 5.sp,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(child: Container()),
+                                      SizedBox(width: _width * 0.02),
+                                      Expanded(
+                                        flex: 4,
+                                        child: TextFormField(
+                                          controller:
+                                              contactinfocontroller
+                                                  .address2Controller,
+                                          onSaved: (val) {
+                                            contactinfocontroller
+                                                .forAddress2(value: val);
+                                          },
+                                          decoration: InputDecoration(
+                                            hintText: "Address Line 2",
+                                            border: OutlineInputBorder(),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 5.sp,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(child: Container()),
+                                      SizedBox(width: _width * 0.02),
+                                      Expanded(
+                                        flex: 4,
+                                        child: TextFormField(
+                                          controller:
+                                              contactinfocontroller
+                                                  .address3Controller,
+                                          onSaved: (val) {
+                                            contactinfocontroller
+                                                .forAddress3(value: val);
+                                          },
+                                          decoration: InputDecoration(
+                                            hintText: "Address Line 3",
+                                            border: OutlineInputBorder(),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                              ElevatedButton(
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: _height * 0.02),
+                        Row(
+                          mainAxisAlignment:
+                              MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                if (contactFormKey.currentState!
+                                    .validate()) {
+                                  contactFormKey.currentState!.save();
+                                }
+                                Navigator.pop(context);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: MyColor,
+                              ),
+                              child: const Text("Save"),
+                            ),
+                            ElevatedButton(
                                 onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                      title: const Text(
-                                          "When You go to pick Image ?"),
-                                      actions: [
-                                        ElevatedButton(
-                                          onPressed: () async {
-                                            contactinfocontroller
-                                                .forImageFromGallery(
-                                                    context: context);
-                                            Navigator.pop(context);
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            primary: MyColor,
-                                          ),
-                                          child: const Text("Gallery"),
-                                        ),
-                                        ElevatedButton(
-                                          onPressed: () async {
-                                            contactinfocontroller
-                                                .forImageFromCamera(
-                                                    context: context);
-                                            Navigator.pop(context);
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            primary: MyColor,
-                                          ),
-                                          child: const Text("Camera"),
-                                        ),
-                                      ],
-                                    ),
-                                  );
+                                  contactFormKey.currentState!.reset();
+
+                                  contactinfocontroller.nameController
+                                      .clear();
+                                  contactinfocontroller.emailController
+                                      .clear();
+                                  contactinfocontroller.phoneController
+                                      .clear();
+                                  contactinfocontroller.address1Controller
+                                      .clear();
+                                  contactinfocontroller.address2Controller
+                                      .clear();
+                                  contactinfocontroller.address3Controller
+                                      .clear();
+                                  setState(() {
+                                    contactinfocontroller.name = null;
+                                    contactinfocontroller.email = null;
+                                    contactinfocontroller.phone = null;
+                                    contactinfocontroller.address1 = null;
+                                    contactinfocontroller.address2 = null;
+                                    contactinfocontroller.address3 = null;
+                                  });
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  shape: const CircleBorder(),
                                   primary: MyColor,
                                 ),
-                                child: const Icon(Icons.add),
-                              )
-                            ],
-                          ),
+                                child: const Text("Clear")),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                ),
-              ],
+                  Container(
+                    height: _height * 0.29,
+                    width: _width,
+                    margin: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.r),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              offset: Offset(2, 2),
+                              spreadRadius: 1.sp,
+                              blurRadius: 1.sp)
+                        ]),
+                    alignment: Alignment.center,
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: (contactinfocontroller.image !=
+                                  null)
+                              ? FileImage(contactinfocontroller.image!)
+                              : null,
+                          radius: 60,
+                          backgroundColor: const Color(0xffC4C4C4),
+                          child: (contactinfocontroller.image == null)
+                              ? const Text(
+                                  "ADD",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )
+                              : const Text(""),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text(
+                                    "When You go to pick Image ?"),
+                                actions: [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      contactinfocontroller
+                                          .forImageFromGallery(
+                                              context: context);
+                                      Navigator.pop(context);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary: MyColor,
+                                    ),
+                                    child: const Text("Gallery"),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      contactinfocontroller
+                                          .forImageFromCamera(
+                                              context: context);
+                                      Navigator.pop(context);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary: MyColor,
+                                    ),
+                                    child: const Text("Camera"),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: const CircleBorder(),
+                            primary: MyColor,
+                          ),
+                          child: const Icon(Icons.add),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         });

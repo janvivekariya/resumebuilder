@@ -41,195 +41,187 @@ class _Personal_Detail_ScreenState extends State<Personal_Detail_Screen> {
               centerTitle: true,
               elevation: 0,
             ),
-            body: Column(
-              children: [
-                Expanded(
-                  flex: 18,
-                  child: Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    color: const Color(0xffEDEDED),
-                    child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(30),
-                            margin: const EdgeInsets.only(
-                                left: 20, right: 20, bottom: 20, top: 30),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10.r),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black.withOpacity(0.5),
-                                      offset: Offset(2, 2),
-                                      spreadRadius: 1.sp,
-                                      blurRadius: 1.sp)
-                                ]),
-                            child: Form(
-                              key: personalDetailsFormKey,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("DOB", style: MyTextStyle),
-                                  SizedBox(height: _height * 0.015),
-                                  TextFormField(
-                                    validator: (val) {
-                                      if (val!.isEmpty) {
-                                        return "Enter your Date of Birth First...";
-                                      }
-                                      return null;
-                                    },
-                                    onTap: () {
-                                      personalscreencontroller.forDateofBirth(
-                                          context: context);
-                                    },
-                                    keyboardType: TextInputType.datetime,
-                                    controller: personalscreencontroller
-                                        .dateOfBirthController,
-                                    decoration: const InputDecoration(
-                                      hintText: "DD/MM/YYYY",
-                                      alignLabelWithHint: true,
-                                      border: OutlineInputBorder(),
-                                    ),
-                                  ),
-                                  SizedBox(height: _height * 0.015),
-                                  Text("Marital Status", style: MyTextStyle),
-                                  RadioListTile(
-                                    title: const Text("Single"),
-                                    value: "Single",
-                                    contentPadding: const EdgeInsets.all(0),
-                                    groupValue:
-                                        personalscreencontroller.maritalStatus,
-                                    onChanged: (val) {
-                                      personalscreencontroller.forMaritalStatus(
-                                          value: val.toString());
-                                    },
-                                  ),
-                                  RadioListTile(
-                                    title: const Text("Married"),
-                                    value: "Married",
-                                    contentPadding: const EdgeInsets.all(0),
-                                    groupValue:
-                                        personalscreencontroller.maritalStatus,
-                                    onChanged: (val) {
-                                      personalscreencontroller.forMaritalStatus(
-                                          value: val.toString());
-                                    },
-                                  ),
-                                  Text("Languages Known", style: MyTextStyle),
-                                  SizedBox(height: _height * 0.01),
-                                  //Check Box
-                                  Row(
-                                    children: [
-                                      Checkbox(
-                                          value: personalscreencontroller
-                                              .englishCheckBox,
-                                          onChanged: (val) {
-                                            personalscreencontroller
-                                                .forEnglishLan(value: val);
-                                          }),
-                                      const SizedBox(width: 10),
-                                      const Text("English")
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Checkbox(
-                                          value: personalscreencontroller
-                                              .hindiCheckBox,
-                                          onChanged: (val) {
-                                            personalscreencontroller
-                                                .forHindiLan(value: val);
-                                          }),
-                                      const SizedBox(width: 10),
-                                      const Text("Hindi")
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Checkbox(
-                                          value: personalscreencontroller
-                                              .gujratiCheckBox,
-                                          onChanged: (val) {
-                                            personalscreencontroller
-                                                .forGujaratiLan(value: val);
-                                          }),
-                                      const SizedBox(width: 10),
-                                      const Text("Gujarati"),
-                                    ],
-                                  ),
-                                  SizedBox(height: _height * 0.015),
-                                  Text("Nationality", style: MyTextStyle),
-                                  SizedBox(height: _height * 0.015),
-                                  TextFormField(
-                                    validator: (val) {
-                                      if (val!.isEmpty) {
-                                        return "Enter your Nationality First...";
-                                      }
-                                      return null;
-                                    },
-                                    onSaved: (val) {
-                                      personalscreencontroller.forNationality(
-                                          value: val);
-                                    },
-                                    controller: personalscreencontroller
-                                        .nationalityController,
-                                    decoration: const InputDecoration(
-                                      hintText: "Indian",
-                                      alignLabelWithHint: true,
-                                      border: OutlineInputBorder(),
-                                    ),
-                                  ),
-                                ],
+            body: Container(
+              height: double.infinity,
+              color: const Color(0xffEDEDED),
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(30),
+                      margin: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 20, top: 30),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.r),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                offset: Offset(2, 2),
+                                spreadRadius: 1.sp,
+                                blurRadius: 1.sp)
+                          ]),
+                      child: Form(
+                        key: personalDetailsFormKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("DOB", style: MyTextStyle),
+                            SizedBox(height: _height * 0.015),
+                            TextFormField(
+                              validator: (val) {
+                                if (val!.isEmpty) {
+                                  return "Enter your Date of Birth First...";
+                                }
+                                return null;
+                              },
+                              onTap: () {
+                                personalscreencontroller.forDateofBirth(
+                                    context: context);
+                              },
+                              keyboardType: TextInputType.datetime,
+                              controller: personalscreencontroller
+                                  .dateOfBirthController,
+                              decoration: const InputDecoration(
+                                hintText: "DD/MM/YYYY",
+                                alignLabelWithHint: true,
+                                border: OutlineInputBorder(),
                               ),
                             ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  if (personalDetailsFormKey.currentState!
-                                      .validate()) {
-                                    personalDetailsFormKey.currentState!.save();
-                                    setState(() => Navigator.of(context).pop());
-                                  }
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  primary: MyColor,
-                                ),
-                                child: const Text("Save"),
+                            SizedBox(height: _height * 0.015),
+                            Text("Marital Status", style: MyTextStyle),
+                            RadioListTile(
+                              title: const Text("Single"),
+                              value: "Single",
+                              contentPadding: const EdgeInsets.all(0),
+                              groupValue:
+                                  personalscreencontroller.maritalStatus,
+                              onChanged: (val) {
+                                personalscreencontroller.forMaritalStatus(
+                                    value: val.toString());
+                              },
+                            ),
+                            RadioListTile(
+                              title: const Text("Married"),
+                              value: "Married",
+                              contentPadding: const EdgeInsets.all(0),
+                              groupValue:
+                                  personalscreencontroller.maritalStatus,
+                              onChanged: (val) {
+                                personalscreencontroller.forMaritalStatus(
+                                    value: val.toString());
+                              },
+                            ),
+                            Text("Languages Known", style: MyTextStyle),
+                            SizedBox(height: _height * 0.01),
+                            //Check Box
+                            Row(
+                              children: [
+                                Checkbox(
+                                    value: personalscreencontroller
+                                        .englishCheckBox,
+                                    onChanged: (val) {
+                                      personalscreencontroller
+                                          .forEnglishLan(value: val);
+                                    }),
+                                const SizedBox(width: 10),
+                                const Text("English")
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Checkbox(
+                                    value: personalscreencontroller
+                                        .hindiCheckBox,
+                                    onChanged: (val) {
+                                      personalscreencontroller
+                                          .forHindiLan(value: val);
+                                    }),
+                                const SizedBox(width: 10),
+                                const Text("Hindi")
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Checkbox(
+                                    value: personalscreencontroller
+                                        .gujratiCheckBox,
+                                    onChanged: (val) {
+                                      personalscreencontroller
+                                          .forGujaratiLan(value: val);
+                                    }),
+                                const SizedBox(width: 10),
+                                const Text("Gujarati"),
+                              ],
+                            ),
+                            SizedBox(height: _height * 0.015),
+                            Text("Nationality", style: MyTextStyle),
+                            SizedBox(height: _height * 0.015),
+                            TextFormField(
+                              validator: (val) {
+                                if (val!.isEmpty) {
+                                  return "Enter your Nationality First...";
+                                }
+                                return null;
+                              },
+                              onSaved: (val) {
+                                personalscreencontroller.forNationality(
+                                    value: val);
+                              },
+                              controller: personalscreencontroller
+                                  .nationalityController,
+                              decoration: const InputDecoration(
+                                hintText: "Indian",
+                                alignLabelWithHint: true,
+                                border: OutlineInputBorder(),
                               ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  personalDetailsFormKey.currentState!.reset();
-
-                                  personalscreencontroller.dateOfBirthController
-                                      .clear();
-                                  personalscreencontroller.nationalityController
-                                      .clear();
-                                  setState(() {
-                                    personalscreencontroller.dateOfBirth = null;
-                                    personalscreencontroller.maritalStatus =
-                                        null;
-                                    personalscreencontroller.nationality = null;
-                                  });
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  primary: MyColor,
-                                ),
-                                child: const Text("Clear"),
-                              ),
-                            ],
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            if (personalDetailsFormKey.currentState!
+                                .validate()) {
+                              personalDetailsFormKey.currentState!.save();
+                              setState(() => Navigator.of(context).pop());
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: MyColor,
+                          ),
+                          child: const Text("Save"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            personalDetailsFormKey.currentState!.reset();
+
+                            personalscreencontroller.dateOfBirthController
+                                .clear();
+                            personalscreencontroller.nationalityController
+                                .clear();
+                            setState(() {
+                              personalscreencontroller.dateOfBirth = null;
+                              personalscreencontroller.maritalStatus =
+                                  null;
+                              personalscreencontroller.nationality = null;
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: MyColor,
+                          ),
+                          child: const Text("Clear"),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           );
         });
