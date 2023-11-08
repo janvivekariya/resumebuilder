@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:resumebuilder/Widget/backButton.dart';
 
 
 class Build_Options_Page extends StatefulWidget {
@@ -61,7 +62,6 @@ class _Build_Options_PageState extends State<Build_Options_Page> {
         actions: [
           InkWell(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => PDF_Page(),));
               // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Please Fill Up Data")));
               // Navigator.of(context).pushNamed("contact_info_page");
             },
