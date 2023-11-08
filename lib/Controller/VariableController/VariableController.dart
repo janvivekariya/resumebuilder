@@ -12,7 +12,18 @@ class VariableController extends GetxController {
 
   File? image;
 
-   String? careerObjectiveDescription;
-   String? careerObjectiveExperienced;
+  String? careerObjectiveDescription;
+  String? careerObjectiveExperienced;
 
+  String? dateOfBirth;
+  String? maritalStatus;
+  bool englishCheckBox = false;
+  bool hindiCheckBox = false;
+  bool gujratiCheckBox = false;
+  String? nationality;
+
+   String? course;
+   String? collage;
+   String? marks;
+   String? passYear;
 }
