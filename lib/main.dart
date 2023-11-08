@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:resumebuilder/Splash_Screen.dart';
 import 'Routes/Route.dart' as route;
 
@@ -19,8 +20,8 @@ class _resume_builderState extends State<resume_builder> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       builder: (context, child) {
-        return const MaterialApp(
-          home: splash_screen(),
+        return const GetMaterialApp(
+          home: Splash_Screen(),
           onGenerateRoute: route.Routes.OnRouteGenerate,
         );
       },

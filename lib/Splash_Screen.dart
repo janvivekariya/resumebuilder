@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:resumebuilder/Screens/Build_Option_Screen/build_options_page.dart';
+import 'package:resumebuilder/Screens/Home_Screen/Home_Screen.dart';
 
-class splash_screen extends StatefulWidget {
-  const splash_screen({super.key});
+class Splash_Screen extends StatefulWidget {
+  const Splash_Screen({super.key});
 
-  static const String RouteName = "/splashscreen";
+  static const String RouteName = "/SplashScreen";
 
   @override
-  State<splash_screen> createState() => _splash_screenState();
+  State<Splash_Screen> createState() => _Splash_ScreenState();
 }
 
-class _splash_screenState extends State<splash_screen> {
+class _Splash_ScreenState extends State<Splash_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +29,7 @@ class _splash_screenState extends State<splash_screen> {
 
   forNavigation() {
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, Build_Options_Page.RouteName);
+      Navigator.pushReplacementNamed(context, Home_Screen.RouteName);
     });
   }
 }

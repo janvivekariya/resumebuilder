@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:resumebuilder/Screens/Build_Option_Screen/build_options_page.dart';
+import 'package:resumebuilder/Screens/Option_Screen/Option_Screen.dart';
 
-class homescreen extends StatefulWidget {
-  const homescreen({super.key});
-
-  static const String RouteName = "/homescreen";
-
+class Home_Screen extends StatefulWidget {
+  const Home_Screen({super.key});
+  static const String RouteName = "/HomeScreen";
   @override
-  State<homescreen> createState() => _homescreenState();
+  State<Home_Screen> createState() => _Home_ScreenState();
 }
 
-class _homescreenState extends State<homescreen> {
+class _Home_ScreenState extends State<Home_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +20,7 @@ class _homescreenState extends State<homescreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, Build_Options_Page.RouteName);
+          Navigator.pushNamed(context, Option_Screen.RouteName);
         },
         child: const Icon(
           Icons.add,
@@ -34,7 +32,7 @@ class _homescreenState extends State<homescreen> {
         children: [
           Center(
             child: Text(
-              "Press + Button Start Building Your Resume",
+              "Press + Button To Start Building Your Resume",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 18.sp, color: Colors.grey),
             ),
