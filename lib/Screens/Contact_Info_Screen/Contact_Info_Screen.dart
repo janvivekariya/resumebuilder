@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:resumebuilder/Controller/ContactInfoScreenController/ContactInfoScreenController.dart';
 import 'package:resumebuilder/Controller/VariableController/VariableController.dart';
 import 'package:resumebuilder/Widget/backButton.dart';
 
 class Contact_Info_Screen extends StatefulWidget {
-  final String? title;
-
-  const Contact_Info_Screen({Key? key, this.title}) : super(key: key);
-  static const String RouteName = "/Contact_infoScreen";
+  const Contact_Info_Screen({Key? key}) : super(key: key);
+  static const String RouteName = "/Contact_InfoScreen";
 
   @override
   State<Contact_Info_Screen> createState() => _Contact_Info_ScreenState();
@@ -21,29 +20,20 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
   Color MyColor = const Color(0xff0475FF);
   int initialIndex = 0;
 
-  final ImagePicker _picker = ImagePicker();
-
   final GlobalKey<FormState> contactFormKey = GlobalKey<FormState>();
-
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController address1Controller = TextEditingController();
-  final TextEditingController address2Controller = TextEditingController();
-  final TextEditingController address3Controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
     return GetBuilder(
-        init: VariableController(),
-        builder: (variablecontroller) {
+        init: ContactInfoScreenController(),
+        builder: (contactinfocontroller) {
           return Scaffold(
             appBar: AppBar(
               leading: backButton(context),
               backgroundColor: MyColor,
-              title: Text(widget.title!.substring(1, widget.title!.length)),
+              title: Text("Contact Info"),
               centerTitle: true,
               elevation: 0,
             ),
@@ -156,207 +146,199 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                 color: Colors.white,
                                 child: SingleChildScrollView(
                                   physics: const BouncingScrollPhysics(),
-                                  child: Expanded(
-                                    flex: 7,
-                                    child: Form(
-                                      key: contactFormKey,
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Image.asset(
-                                                  "assets/icons/user.png",
-                                                  height: _height * 0.048,
+                                  child: Form(
+                                    key: contactFormKey,
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Image.asset(
+                                                "assets/icons/user.png",
+                                                height: _height * 0.048,
+                                              ),
+                                            ),
+                                            SizedBox(width: _width * 0.02),
+                                            Expanded(
+                                              flex: 4,
+                                              child: TextFormField(
+                                                controller:
+                                                    contactinfocontroller
+                                                        .nameController,
+                                                validator: (val) {
+                                                  if (val!.isEmpty) {
+                                                    return "Enter your Name First...";
+                                                  }
+                                                  return null;
+                                                },
+                                                onSaved: (val) {
+                                                  contactinfocontroller.forName(
+                                                      value: val);
+                                                },
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Name",
+                                                  label: Text("Name"),
                                                 ),
                                               ),
-                                              SizedBox(width: _width * 0.02),
-                                              Expanded(
-                                                flex: 4,
-                                                child: TextFormField(
-                                                  controller: nameController,
-                                                  validator: (val) {
-                                                    if (val!.isEmpty) {
-                                                      return "Enter your Name First...";
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onSaved: (val) {
-                                                    setState(() {
-                                                      variablecontroller.name =
-                                                          val;
-                                                    });
-                                                  },
-                                                  decoration:
-                                                      const InputDecoration(
-                                                    hintText: "Name",
-                                                    label: Text("Name"),
-                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Image.asset(
+                                                "assets/icons/email.png",
+                                                height: _height * 0.048,
+                                              ),
+                                            ),
+                                            SizedBox(width: _width * 0.02),
+                                            Expanded(
+                                              flex: 4,
+                                              child: TextFormField(
+                                                controller:
+                                                    contactinfocontroller
+                                                        .emailController,
+                                                validator: (val) {
+                                                  if (val!.isEmpty) {
+                                                    return "Enter your Email First...";
+                                                  }
+                                                  return null;
+                                                },
+                                                onSaved: (val) {
+                                                  contactinfocontroller
+                                                      .forEmail(value: val);
+                                                },
+                                                keyboardType:
+                                                    TextInputType.emailAddress,
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Email",
+                                                  label: Text("Email"),
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Image.asset(
-                                                  "assets/icons/email.png",
-                                                  height: _height * 0.048,
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Image.asset(
+                                                "assets/icons/smartphone-call.png",
+                                                height: _height * 0.048,
+                                              ),
+                                            ),
+                                            SizedBox(width: _width * 0.02),
+                                            Expanded(
+                                              flex: 4,
+                                              child: TextFormField(
+                                                controller:
+                                                    contactinfocontroller
+                                                        .phoneController,
+                                                validator: (val) {
+                                                  if (val!.isEmpty) {
+                                                    return "Enter your Phone First...";
+                                                  }
+                                                  return null;
+                                                },
+                                                onSaved: (val) {
+                                                  contactinfocontroller
+                                                      .forPhone(value: val);
+                                                },
+                                                keyboardType:
+                                                    TextInputType.phone,
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Phone",
+                                                  label: Text("Phone"),
                                                 ),
                                               ),
-                                              SizedBox(width: _width * 0.02),
-                                              Expanded(
-                                                flex: 4,
-                                                child: TextFormField(
-                                                  controller: emailController,
-                                                  validator: (val) {
-                                                    if (val!.isEmpty) {
-                                                      return "Enter your Email First...";
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onSaved: (val) {
-                                                    setState(() {
-                                                      variablecontroller.email =
-                                                          val;
-                                                    });
-                                                  },
-                                                  keyboardType: TextInputType
-                                                      .emailAddress,
-                                                  decoration:
-                                                      const InputDecoration(
-                                                    hintText: "Email",
-                                                    label: Text("Email"),
-                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Image.asset(
+                                                "assets/icons/pin.png",
+                                                height: _height * 0.048,
+                                              ),
+                                            ),
+                                            SizedBox(width: _width * 0.02),
+                                            Expanded(
+                                              flex: 4,
+                                              child: TextFormField(
+                                                controller:
+                                                    contactinfocontroller
+                                                        .address1Controller,
+                                                validator: (val) {
+                                                  if (val!.isEmpty) {
+                                                    return "Enter your Address First...";
+                                                  }
+                                                  return null;
+                                                },
+                                                onSaved: (val) {
+                                                  contactinfocontroller
+                                                      .forAddress1(value: val);
+                                                },
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText:
+                                                      "Address (Street, Building No)",
+                                                  label: Text(
+                                                      "Address (Street, Building No)"),
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Image.asset(
-                                                  "assets/icons/smartphone-call.png",
-                                                  height: _height * 0.048,
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(child: Container()),
+                                            SizedBox(width: _width * 0.02),
+                                            Expanded(
+                                              flex: 4,
+                                              child: TextFormField(
+                                                controller:
+                                                    contactinfocontroller
+                                                        .address2Controller,
+                                                onSaved: (val) {
+                                                  contactinfocontroller
+                                                      .forAddress2(value: val);
+                                                },
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Address Line 2",
+                                                  label: Text("Address Line 2"),
                                                 ),
                                               ),
-                                              SizedBox(width: _width * 0.02),
-                                              Expanded(
-                                                flex: 4,
-                                                child: TextFormField(
-                                                  controller: phoneController,
-                                                  validator: (val) {
-                                                    if (val!.isEmpty) {
-                                                      return "Enter your Phone First...";
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onSaved: (val) {
-                                                    setState(() {
-                                                      variablecontroller.phone =
-                                                          val;
-                                                    });
-                                                  },
-                                                  keyboardType:
-                                                      TextInputType.phone,
-                                                  decoration:
-                                                      const InputDecoration(
-                                                    hintText: "Phone",
-                                                    label: Text("Phone"),
-                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(child: Container()),
+                                            SizedBox(width: _width * 0.02),
+                                            Expanded(
+                                              flex: 4,
+                                              child: TextFormField(
+                                                controller:
+                                                    contactinfocontroller
+                                                        .address3Controller,
+                                                onSaved: (val) {
+                                                  contactinfocontroller
+                                                      .forAddress3(value: val);
+                                                },
+                                                decoration:
+                                                    const InputDecoration(
+                                                  hintText: "Address Line 3",
+                                                  label: Text("Address Line 3"),
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Image.asset(
-                                                  "assets/icons/pin.png",
-                                                  height: _height * 0.048,
-                                                ),
-                                              ),
-                                              SizedBox(width: _width * 0.02),
-                                              Expanded(
-                                                flex: 4,
-                                                child: TextFormField(
-                                                  controller:
-                                                      address1Controller,
-                                                  validator: (val) {
-                                                    if (val!.isEmpty) {
-                                                      return "Enter your Address First...";
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onSaved: (val) {
-                                                    setState(() {
-                                                      variablecontroller
-                                                          .address1 = val;
-                                                    });
-                                                  },
-                                                  decoration:
-                                                      const InputDecoration(
-                                                    hintText:
-                                                        "Address (Street, Building No)",
-                                                    label: Text(
-                                                        "Address (Street, Building No)"),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Expanded(child: Container()),
-                                              SizedBox(width: _width * 0.02),
-                                              Expanded(
-                                                flex: 4,
-                                                child: TextFormField(
-                                                  controller:
-                                                      address2Controller,
-                                                  onSaved: (val) {
-                                                    setState(() {
-                                                      variablecontroller
-                                                          .address2 = val;
-                                                    });
-                                                  },
-                                                  decoration:
-                                                      const InputDecoration(
-                                                    hintText: "Address Line 2",
-                                                    label:
-                                                        Text("Address Line 2"),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Expanded(child: Container()),
-                                              SizedBox(width: _width * 0.02),
-                                              Expanded(
-                                                flex: 4,
-                                                child: TextFormField(
-                                                  controller:
-                                                      address3Controller,
-                                                  onSaved: (val) {
-                                                    setState(() {
-                                                      variablecontroller
-                                                          .address3 = val;
-                                                    });
-                                                  },
-                                                  decoration:
-                                                      const InputDecoration(
-                                                    hintText: "Address Line 3",
-                                                    label:
-                                                        Text("Address Line 3"),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -383,19 +365,25 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                       onPressed: () {
                                         contactFormKey.currentState!.reset();
 
-                                        nameController.clear();
-                                        emailController.clear();
-                                        phoneController.clear();
-                                        address1Controller.clear();
-                                        address2Controller.clear();
-                                        address3Controller.clear();
+                                        contactinfocontroller.nameController
+                                            .clear();
+                                        contactinfocontroller.emailController
+                                            .clear();
+                                        contactinfocontroller.phoneController
+                                            .clear();
+                                        contactinfocontroller.address1Controller
+                                            .clear();
+                                        contactinfocontroller.address2Controller
+                                            .clear();
+                                        contactinfocontroller.address3Controller
+                                            .clear();
                                         setState(() {
-                                          variablecontroller.name = null;
-                                          variablecontroller.email = null;
-                                          variablecontroller.phone = null;
-                                          variablecontroller.address1 = null;
-                                          variablecontroller.address2 = null;
-                                          variablecontroller.address3 = null;
+                                          contactinfocontroller.name = null;
+                                          contactinfocontroller.email = null;
+                                          contactinfocontroller.phone = null;
+                                          contactinfocontroller.address1 = null;
+                                          contactinfocontroller.address2 = null;
+                                          contactinfocontroller.address3 = null;
                                         });
                                       },
                                       style: ElevatedButton.styleFrom(
@@ -417,13 +405,13 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                             alignment: Alignment.bottomRight,
                             children: [
                               CircleAvatar(
-                                backgroundImage:
-                                    (variablecontroller.image != null)
-                                        ? FileImage(variablecontroller.image!)
-                                        : null,
+                                backgroundImage: (contactinfocontroller.image !=
+                                        null)
+                                    ? FileImage(contactinfocontroller.image!)
+                                    : null,
                                 radius: 60,
                                 backgroundColor: const Color(0xffC4C4C4),
-                                child: (variablecontroller.image == null)
+                                child: (contactinfocontroller.image == null)
                                     ? const Text(
                                         "ADD",
                                         style: TextStyle(
@@ -444,15 +432,9 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                       actions: [
                                         ElevatedButton(
                                           onPressed: () async {
-                                            XFile? pickerFile =
-                                                await _picker.pickImage(
-                                                    source:
-                                                        ImageSource.gallery);
-                                            setState(() {
-                                              variablecontroller.image =
-                                                  File(pickerFile!.path);
-                                              Navigator.of(context).pop();
-                                            });
+                                            contactinfocontroller
+                                                .forImageFromGallery(
+                                                    context: context);
                                           },
                                           style: ElevatedButton.styleFrom(
                                             primary: MyColor,
@@ -461,14 +443,9 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                         ),
                                         ElevatedButton(
                                           onPressed: () async {
-                                            XFile? pickerFile =
-                                                await _picker.pickImage(
-                                                    source: ImageSource.camera);
-                                            setState(() {
-                                              variablecontroller.image =
-                                                  File(pickerFile!.path);
-                                              Navigator.of(context).pop();
-                                            });
+                                            contactinfocontroller
+                                                .forImageFromCamera(
+                                                    context: context);
                                           },
                                           style: ElevatedButton.styleFrom(
                                             primary: MyColor,

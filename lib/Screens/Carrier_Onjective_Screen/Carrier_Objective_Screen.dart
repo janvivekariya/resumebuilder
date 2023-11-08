@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:resumebuilder/Controller/CarrierObjectiveScreenController/CarrierObjectiveScreenController.dart';
 import 'package:resumebuilder/Controller/VariableController/VariableController.dart';
 import 'package:resumebuilder/Widget/backButton.dart';
 
 class Carrier_Objective_Screen extends StatefulWidget {
-  final String? title;
-
-  const Carrier_Objective_Screen({Key? key, this.title}) : super(key: key);
+  const Carrier_Objective_Screen({Key? key}) : super(key: key);
   static const String RouteName = "/CarrierObjectiveScreen";
 
   @override
@@ -18,17 +17,14 @@ class _Carrier_Objective_ScreenState extends State<Carrier_Objective_Screen> {
   Color MyColor = const Color(0xff0475FF);
   final GlobalKey<FormState> careerObjectiveFormKey = GlobalKey<FormState>();
 
-  final TextEditingController descriptionController = TextEditingController();
-  final TextEditingController experiencedController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
 
     return GetBuilder(
-        init: VariableController(),
-        builder: (variabalecontroller) {
+        init: CarrierObjectiveScreenController(),
+        builder: (carrierscreencontroller) {
           return Scaffold(
             appBar: AppBar(
               leading: backButton(context),
@@ -90,14 +86,13 @@ class _Carrier_Objective_ScreenState extends State<Carrier_Objective_Screen> {
                                             return null;
                                           },
                                           onSaved: (val) {
-                                            setState(() {
-                                              variabalecontroller
-                                                      .careerObjectiveDescription =
-                                                  val;
-                                            });
+                                            carrierscreencontroller
+                                                .forCarrierObjective(
+                                                    value: val);
                                           },
                                           maxLines: 10,
-                                          controller: descriptionController,
+                                          controller: carrierscreencontroller
+                                              .descriptionController,
                                           decoration: const InputDecoration(
                                             hintText: "Description",
                                             border: OutlineInputBorder(),
@@ -135,13 +130,12 @@ class _Carrier_Objective_ScreenState extends State<Carrier_Objective_Screen> {
                                             return null;
                                           },
                                           onSaved: (val) {
-                                            setState(() {
-                                              variabalecontroller
-                                                      .careerObjectiveExperienced =
-                                                  val;
-                                            });
+                                            carrierscreencontroller
+                                                .forCarrierExperience(
+                                                    value: val);
                                           },
-                                          controller: experiencedController,
+                                          controller: carrierscreencontroller
+                                              .experiencedController,
                                           decoration: const InputDecoration(
                                             hintText: "Software Engineer",
                                             border: OutlineInputBorder(),
@@ -174,12 +168,14 @@ class _Carrier_Objective_ScreenState extends State<Carrier_Objective_Screen> {
                                 onPressed: () {
                                   careerObjectiveFormKey.currentState!.reset();
 
-                                  descriptionController.clear();
-                                  experiencedController.clear();
+                                  carrierscreencontroller.descriptionController
+                                      .clear();
+                                  carrierscreencontroller.experiencedController
+                                      .clear();
                                   setState(() {
-                                    variabalecontroller
+                                    carrierscreencontroller
                                         .careerObjectiveDescription = null;
-                                    variabalecontroller
+                                    carrierscreencontroller
                                         .careerObjectiveExperienced = null;
                                   });
                                 },

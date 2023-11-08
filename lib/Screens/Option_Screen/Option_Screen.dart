@@ -54,7 +54,7 @@ class _Option_ScreenState extends State<Option_Screen> {
                           children: [
                             InkWell(
                               onTap: () {
-                                Navigator.of(context).pushNamed(option["routes"], arguments: {"title": option["routes"]});
+                                Navigator.of(context).pushNamed(option["routes"],);
                               },
                               child: Row(
                                 children: [

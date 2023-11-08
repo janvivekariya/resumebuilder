@@ -13,37 +13,37 @@ class OptionScreenController extends GetxController{
       "id": 1,
       "option_name": "Contact info",
       "image": "assets/icons/contact_detail-removebg-preview (1).png",
-      "routename": Contact_Info_Screen.RouteName
+      "routes": Contact_Info_Screen.RouteName
     },
     {
       "id": 2,
       "option_name": "Carrier Objective",
       "image": "assets/icons/briefcase.png",
-      "routename": Carrier_Objective_Screen.RouteName
+      "routes": Carrier_Objective_Screen.RouteName
     },
     {
       "id": 3,
       "option_name": "Personal Details",
       "image": "assets/icons/account.png",
-      "routename": Personal_Detail_Screen.RouteName
+      "routes": Personal_Detail_Screen.RouteName
     },
     {
       "id": 4,
       "option_name": "Educations",
       "image": "assets/icons/graduation-cap.png",
-      "routename": Education_Screen.RouteName
+      "routes": Education_Screen.RouteName
     },
     {
       "id": 5,
       "option_name": "Experience",
       "image": "assets/icons/logical-thinking.png",
-      "routename": Experience_Screen.RouteName
+      "routes": Experience_Screen.RouteName
     },
     {
       "id": 6,
       "option_name": "Technical Skills",
       "image": "assets/icons/certificate.png",
-      "routename": Technical_Skills_Screen.RouteName
+      "routes": Technical_Skills_Screen.RouteName
     },
   ];
 
