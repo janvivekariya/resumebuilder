@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:resumebuilder/Screens/Build_Option_Screen/build_options_page.dart';
 import 'package:resumebuilder/Screens/Home_Screen.dart';
 import 'package:resumebuilder/Splash_Screen.dart';
+
 
 class Routes {
   static MaterialPageRoute OnRouteGenerate(RouteSettings settings) {
@@ -15,6 +17,12 @@ class Routes {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => homescreen(),
+        );
+
+      case Build_Options_Page.RouteName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => Build_Options_Page(),
         );
 
 

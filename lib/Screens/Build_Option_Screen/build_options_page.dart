@@ -17,37 +17,9 @@ class _Build_Options_PageState extends State<Build_Options_Page> {
       "id": 1,
       "option_name": "Contact info",
       "image": "assets/icons/contact_detail-removebg-preview (1).png",
+      "routes": contact_info_screen.RouteName,
     },
-    {
-      "id": 2,
-      "option_name": "Carrier Objective",
-      "image": "assets/icons/briefcase.png",
-    },
-    {
-      "id": 3,
-      "option_name": "Personal Details",
-      "image": "assets/icons/account.png",
-    },
-    {
-      "id": 4,
-      "option_name": "Educations",
-      "image": "assets/icons/graduation-cap.png",
-    },
-    {
-      "id": 5,
-      "option_name": "Experience",
-      "image": "assets/icons/logical-thinking.png",
-    },
-    {
-      "id": 6,
-      "option_name": "Technical Skills",
-      "image": "assets/icons/certificate.png",
-    },
-    {
-      "id": 8,
-      "option_name": "Projects",
-      "image": "assets/icons/project-management.png",
-    },
+
   ];
 
   @override
@@ -62,6 +34,7 @@ class _Build_Options_PageState extends State<Build_Options_Page> {
         actions: [
           InkWell(
             onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => PDF_Page(),));
               // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Please Fill Up Data")));
               // Navigator.of(context).pushNamed("contact_info_page");
             },
