@@ -23,6 +23,7 @@ class _resume_builderState extends State<resume_builder> {
         return const GetMaterialApp(
           home: Splash_Screen(),
           onGenerateRoute: route.Routes.OnRouteGenerate,
+          debugShowCheckedModeBanner: false,
         );
       },
     );

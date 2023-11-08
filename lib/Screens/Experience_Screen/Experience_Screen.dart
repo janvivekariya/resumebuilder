@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:resumebuilder/Controller/ExpereinceScreenController/ExpereinceScreenController.dart';
 import 'package:resumebuilder/Controller/VariableController/VariableController.dart';
 import 'package:resumebuilder/Widget/backButton.dart';
 
 class Experience_Screen extends StatefulWidget {
   final String? title;
+
   const Experience_Screen({Key? key, this.title}) : super(key: key);
   static const String RouteName = "/experience";
 
@@ -22,308 +24,279 @@ class _Experience_ScreenState extends State<Experience_Screen> {
 
   final GlobalKey<FormState> experienceFormKey = GlobalKey<FormState>();
 
-  final TextEditingController companyNameController = TextEditingController();
-  final TextEditingController experienceCollageController =
-      TextEditingController();
-  final TextEditingController roleController = TextEditingController();
-  final TextEditingController joinDateController = TextEditingController();
-  final TextEditingController exitDateController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
     return GetBuilder(
-      init: VariableController(),
-      builder: (variablecontroller) {
-        return Scaffold(
-          appBar: AppBar(
-            leading: backButton(context),
-            backgroundColor: MyColor,
-            title: const Text("Experience"),
-            centerTitle: true,
-            elevation: 0,
-          ),
-          body: Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Container(
-                  width: _width,
-                  alignment: const Alignment(0, 0.5),
-                  color: MyColor,
-                ),
-              ),
-              Expanded(
-                flex: 18,
-                child: Container(
-                  color: const Color(0xffEDEDED),
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        Container(
-                          color: Colors.white,
-                          margin: const EdgeInsets.only(
-                              top: 30, bottom: 20, right: 20, left: 20),
-                          padding: const EdgeInsets.all(20),
-                          child: Form(
-                            key: experienceFormKey,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Company Name", style: MyTextStyle),
-                                SizedBox(height: _height * 0.015),
-                                TextFormField(
-                                  validator: (val) {
-                                    if (val!.isEmpty) {
-                                      return "Enter your Company Name First...";
-                                    }
-                                    return null;
-                                  },
-                                  onSaved: (val) {
-                                    setState(() {
-                                      variablecontroller.experienceCompanyName = val;
-                                    });
-                                  },
-                                  controller: companyNameController,
-                                  decoration: const InputDecoration(
-                                    hintText: "New Enterprise, San Francisco",
-                                    border: OutlineInputBorder(),
+        init: ExpereinceScreenController(),
+        builder: (experiencescreencontroller) {
+          return Scaffold(
+            appBar: AppBar(
+              leading: backButton(context),
+              backgroundColor: MyColor,
+              title: const Text("Experience"),
+              centerTitle: true,
+              elevation: 0,
+            ),
+            body: Column(
+              children: [
+                Expanded(
+                  flex: 18,
+                  child: Container(
+                    color: const Color(0xffEDEDED),
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          Container(
+                            color: Colors.white,
+                            margin: const EdgeInsets.only(
+                                top: 30, bottom: 20, right: 20, left: 20),
+                            padding: const EdgeInsets.all(20),
+                            child: Form(
+                              key: experienceFormKey,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Company Name", style: MyTextStyle),
+                                  SizedBox(height: _height * 0.015),
+                                  TextFormField(
+                                    validator: (val) {
+                                      if (val!.isEmpty) {
+                                        return "Enter your Company Name First...";
+                                      }
+                                      return null;
+                                    },
+                                    onSaved: (val) {
+                                      experiencescreencontroller.forCompany(
+                                          value: val);
+                                    },
+                                    controller: experiencescreencontroller
+                                        .companyNameController,
+                                    decoration: const InputDecoration(
+                                      hintText: "New Enterprise, San Francisco",
+                                      border: OutlineInputBorder(),
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: _height * 0.015),
-                                Text("School/Collage/Institute",
-                                    style: MyTextStyle),
-                                SizedBox(height: _height * 0.015),
-                                TextFormField(
-                                  validator: (val) {
-                                    if (val!.isEmpty) {
-                                      return "Enter your School/Collage/Institute First...";
-                                    }
-                                    return null;
-                                  },
-                                  onSaved: (val) {
-                                    setState(() {
-                                      variablecontroller.experienceCollage = val;
-                                    });
-                                  },
-                                  controller: experienceCollageController,
-                                  decoration: const InputDecoration(
-                                    hintText: "Quality Test Engineer",
-                                    border: OutlineInputBorder(),
+                                  SizedBox(height: _height * 0.015),
+                                  Text("Roles (optional)", style: MyTextStyle),
+                                  SizedBox(height: _height * 0.015),
+                                  TextFormField(
+                                    onSaved: (val) {
+                                      experiencescreencontroller.forRole(
+                                          value: val);
+                                    },
+                                    maxLines: 3,
+                                    controller: experiencescreencontroller
+                                        .roleController,
+                                    decoration: const InputDecoration(
+                                      hintText:
+                                          "Working With team member to\ncome Up With new concepts and\nproducts analysis...",
+                                      border: OutlineInputBorder(),
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: _height * 0.015),
-                                Text("Roles (optional)", style: MyTextStyle),
-                                SizedBox(height: _height * 0.015),
-                                TextFormField(
-                                  onSaved: (val) {
-                                    setState(() {
-                                      variablecontroller.experienceRole = val;
-                                    });
-                                  },
-                                  maxLines: 3,
-                                  controller: roleController,
-                                  decoration: const InputDecoration(
-                                    hintText:
-                                        "Working With team member to\ncome Up With new concepts and\nproducts analysis...",
-                                    border: OutlineInputBorder(),
+                                  SizedBox(height: _height * 0.015),
+                                  const Text(
+                                    "Employed Status",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.grey),
                                   ),
-                                ),
-                                SizedBox(height: _height * 0.015),
-                                const Text(
-                                  "Employed Status",
-                                  style:
-                                      TextStyle(fontSize: 15, color: Colors.grey),
-                                ),
-                                // Employed Status Radio Button
-                                SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
+                                  // Employed Status Radio Button
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Radio(
+                                              value: "Previously Employed",
+                                              groupValue:
+                                                  experiencescreencontroller
+                                                      .experienceEmployedStatus,
+                                              onChanged: (val) {
+                                                experiencescreencontroller
+                                                    .forStatus(value: val);
+                                              },
+                                            ),
+                                            const Text(
+                                              "Previously Employed",
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                fontSize: 12,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Radio(
+                                              value: "Currently Employed",
+                                              groupValue:
+                                                  experiencescreencontroller
+                                                      .experienceEmployedStatus,
+                                              onChanged: (val) {
+                                                experiencescreencontroller
+                                                    .forCompany(value: val);
+                                              },
+                                            ),
+                                            const Text(
+                                              "Currently Employed",
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                fontSize: 12,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(color: Colors.grey, height: 1),
+                                  //Join Date Exit Date
+                                  SizedBox(height: _height * 0.015),
+                                  Row(
                                     children: [
-                                      Row(
-                                        children: [
-                                          Radio(
-                                            value: "Previously Employed",
-                                            groupValue:
-                                            variablecontroller.experienceEmployedStatus,
-                                            onChanged: (val) {
-                                              setState(() {
-                                                variablecontroller.experienceEmployedStatus =
-                                                    val.toString();
-                                              });
-                                            },
-                                          ),
-                                          const Text(
-                                            "Previously Employed",
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              fontSize: 12,
+                                      // join Date
+                                      Expanded(
+                                        child: Column(
+                                          children: [
+                                            const Text(
+                                              "Date Joined",
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                             ),
-                                          )
-                                        ],
+                                            SizedBox(height: _height * 0.01),
+                                            TextFormField(
+                                              validator: (val) {
+                                                if (val!.isEmpty) {
+                                                  return "Enter your Join Date First...";
+                                                }
+                                                return null;
+                                              },
+                                              onTap: () {
+                                                experiencescreencontroller
+                                                    .forJoinDate(
+                                                        context: context);
+                                              },
+                                              keyboardType:
+                                                  TextInputType.datetime,
+                                              controller:
+                                                  experiencescreencontroller
+                                                      .joinDateController,
+                                              decoration: const InputDecoration(
+                                                hintText: "DD/MM/YYYY",
+                                                alignLabelWithHint: true,
+                                                border: OutlineInputBorder(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      Row(
-                                        children: [
-                                          Radio(
-                                            value: "Currently Employed",
-                                            groupValue:
-                                            variablecontroller.experienceEmployedStatus,
-                                            onChanged: (val) {
-                                              setState(() {
-                                                variablecontroller.experienceEmployedStatus =
-                                                    val.toString();
-                                              });
-                                            },
-                                          ),
-                                          const Text(
-                                            "Currently Employed",
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              fontSize: 12,
-                                            ),
-                                          )
-                                        ],
+                                      SizedBox(width: _width * 0.05),
+                                      // Exit Date
+                                      Expanded(
+                                        child: (experiencescreencontroller
+                                                    .experienceEmployedStatus ==
+                                                "Previously Employed")
+                                            ? Column(
+                                                children: [
+                                                  const Text(
+                                                    "Exit Joined",
+                                                    style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                      height: _height * 0.01),
+                                                  TextFormField(
+                                                    validator: (val) {
+                                                      if (val!.isEmpty) {
+                                                        return "Enter your Exit Date First...";
+                                                      }
+                                                      return null;
+                                                    },
+                                                    onTap: () {
+                                                      experiencescreencontroller
+                                                          .forExitDate(
+                                                              context: context);
+                                                    },
+                                                    keyboardType:
+                                                        TextInputType.datetime,
+                                                    controller:
+                                                        experiencescreencontroller
+                                                            .exitDateController,
+                                                    decoration:
+                                                        const InputDecoration(
+                                                      hintText: "DD/MM/YYYY",
+                                                      alignLabelWithHint: true,
+                                                      border:
+                                                          OutlineInputBorder(),
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                            : Container(),
                                       ),
                                     ],
-                                  ),
-                                ),
-                                Container(color: Colors.grey, height: 1),
-                                //Join Date Exit Date
-                                SizedBox(height: _height * 0.015),
-                                Row(
-                                  children: [
-                                    // join Date
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          const Text(
-                                            "Date Joined",
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          SizedBox(height: _height * 0.01),
-                                          TextFormField(
-                                            validator: (val) {
-                                              if (val!.isEmpty) {
-                                                return "Enter your Join Date First...";
-                                              }
-                                              return null;
-                                            },
-                                            onSaved: (val) {
-                                              setState(() {
-                                                variablecontroller.experienceJoinDate = val;
-                                              });
-                                            },
-                                            keyboardType: TextInputType.datetime,
-                                            controller: joinDateController,
-                                            decoration: const InputDecoration(
-                                              hintText: "DD/MM/YYYY",
-                                              alignLabelWithHint: true,
-                                              border: OutlineInputBorder(),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(width: _width * 0.05),
-                                    // Exit Date
-                                    Expanded(
-                                      child: (variablecontroller.experienceEmployedStatus ==
-                                              "Previously Employed")
-                                          ? Column(
-                                              children: [
-                                                const Text(
-                                                  "Exit Joined",
-                                                  style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                                SizedBox(height: _height * 0.01),
-                                                TextFormField(
-                                                  validator: (val) {
-                                                    if (val!.isEmpty) {
-                                                      return "Enter your Exit Date First...";
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onSaved: (val) {
-                                                    setState(() {
-                                                      variablecontroller.experienceExitDate =
-                                                          val;
-                                                    });
-                                                  },
-                                                  keyboardType:
-                                                      TextInputType.datetime,
-                                                  controller: exitDateController,
-                                                  decoration: const InputDecoration(
-                                                    hintText: "DD/MM/YYYY",
-                                                    alignLabelWithHint: true,
-                                                    border: OutlineInputBorder(),
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          : Container(),
-                                    ),
-                                  ],
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                        ),
 
-                        //Save And Clear Button
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                if (experienceFormKey.currentState!.validate()) {
-                                  experienceFormKey.currentState!.save();
+                          //Save And Clear Button
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  if (experienceFormKey.currentState!
+                                      .validate()) {
+                                    experienceFormKey.currentState!.save();
 
-                                  setState(() => Navigator.of(context).pop());
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                primary: MyColor,
+                                    setState(() => Navigator.of(context).pop());
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: MyColor,
+                                ),
+                                child: const Text("Save"),
                               ),
-                              child: const Text("Save"),
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                experienceFormKey.currentState!.reset();
-
-                                companyNameController.clear();
-                                experienceCollageController.clear();
-                                roleController.clear();
-                                setState(() {
-                                  variablecontroller.experienceCompanyName = null;
-                                  variablecontroller.experienceCollage = null;
-                                  variablecontroller.experienceRole = null;
-                                });
-                              },
-                              style: ElevatedButton.styleFrom(
-                                primary: MyColor,
+                              ElevatedButton(
+                                onPressed: () {
+                                  experienceFormKey.currentState!.reset();
+                                  experiencescreencontroller
+                                      .companyNameController
+                                      .clear();
+                                  experiencescreencontroller.roleController
+                                      .clear();
+                                  experiencescreencontroller
+                                      .experienceCompanyName = null;
+                                  experiencescreencontroller.experienceRole =
+                                      null;
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: MyColor,
+                                ),
+                                child: const Text("Clear"),
                               ),
-                              child: const Text("Clear"),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        );
-      }
-    );
+              ],
+            ),
+          );
+        });
   }
 }
