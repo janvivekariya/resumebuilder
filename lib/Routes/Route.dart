@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resumebuilder/Screens/Build_Option_Screen/build_options_page.dart';
+import 'package:resumebuilder/Screens/Contact_Info_Screen/contact_info_page.dart';
 import 'package:resumebuilder/Screens/Home_Screen.dart';
 import 'package:resumebuilder/Splash_Screen.dart';
 
@@ -23,6 +24,13 @@ class Routes {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => Build_Options_Page(),
+        );
+      case contact_info_screen.RouteName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => contact_info_screen(
+            title: (settings.arguments as Map)["title"],
+          ),
         );
 
 

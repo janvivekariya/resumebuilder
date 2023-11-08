@@ -17,7 +17,6 @@ class _Build_Options_PageState extends State<Build_Options_Page> {
       "id": 1,
       "option_name": "Contact info",
       "image": "assets/icons/contact_detail-removebg-preview (1).png",
-      "routes": contact_info_screen.RouteName,
     },
 
   ];
@@ -34,7 +33,6 @@ class _Build_Options_PageState extends State<Build_Options_Page> {
         actions: [
           InkWell(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => PDF_Page(),));
               // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Please Fill Up Data")));
               // Navigator.of(context).pushNamed("contact_info_page");
             },
