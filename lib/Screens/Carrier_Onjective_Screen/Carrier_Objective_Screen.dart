@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:resumebuilder/Controller/CarrierObjectiveScreenController/CarrierObjectiveScreenController.dart';
-import 'package:resumebuilder/Controller/VariableController/VariableController.dart';
 import 'package:resumebuilder/Widget/backButton.dart';
 
 class Carrier_Objective_Screen extends StatefulWidget {
@@ -36,14 +36,6 @@ class _Carrier_Objective_ScreenState extends State<Carrier_Objective_Screen> {
             body: Column(
               children: [
                 Expanded(
-                  flex: 2,
-                  child: Container(
-                    width: _width,
-                    alignment: const Alignment(0, 0.5),
-                    color: MyColor,
-                  ),
-                ),
-                Expanded(
                   flex: 18,
                   child: Container(
                     color: const Color(0xffEDEDED),
@@ -57,11 +49,20 @@ class _Carrier_Objective_ScreenState extends State<Carrier_Objective_Screen> {
                               children: [
                                 // Career Objective
                                 Container(
-                                  color: Colors.white,
                                   margin: const EdgeInsets.all(20),
                                   padding: const EdgeInsets.all(20),
                                   height: _height * 0.35,
                                   width: _width,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black.withOpacity(0.5),
+                                            offset: Offset(2, 2),
+                                            spreadRadius: 1.sp,
+                                            blurRadius: 1.sp)
+                                      ]),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -104,12 +105,22 @@ class _Carrier_Objective_ScreenState extends State<Carrier_Objective_Screen> {
                                 ),
                                 // Current Designation (Experience Candidate)
                                 Container(
-                                  color: Colors.white,
                                   margin: const EdgeInsets.all(20),
                                   padding: const EdgeInsets.all(20),
                                   height: _height * 0.2,
                                   width: _width,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black.withOpacity(0.5),
+                                            offset: Offset(2, 2),
+                                            spreadRadius: 1.sp,
+                                            blurRadius: 1.sp)
+                                      ]),
                                   child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Expanded(
                                         child: Text(

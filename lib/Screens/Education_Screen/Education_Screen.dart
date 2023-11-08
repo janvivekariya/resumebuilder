@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:resumebuilder/Controller/EducationScreenController/EducationScreenController.dart';
-import 'package:resumebuilder/Controller/VariableController/VariableController.dart';
 import 'package:resumebuilder/Widget/backButton.dart';
 
 class Education_Screen extends StatefulWidget {
@@ -44,14 +44,6 @@ class _Education_ScreenState extends State<Education_Screen> {
             body: Column(
               children: [
                 Expanded(
-                  flex: 2,
-                  child: Container(
-                    width: _width,
-                    alignment: const Alignment(0, 0.5),
-                    color: MyColor,
-                  ),
-                ),
-                Expanded(
                   flex: 18,
                   child: Container(
                     color: const Color(0xffEDEDED),
@@ -60,10 +52,19 @@ class _Education_ScreenState extends State<Education_Screen> {
                       child: Column(
                         children: [
                           Container(
-                            color: Colors.white,
                             margin: const EdgeInsets.only(
                                 top: 30, bottom: 20, right: 20, left: 20),
                             padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10.r),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.5),
+                                      offset: Offset(2, 2),
+                                      spreadRadius: 1.sp,
+                                      blurRadius: 1.sp)
+                                ]),
                             child: Form(
                               key: educationFormKey,
                               child: Column(
@@ -113,7 +114,7 @@ class _Education_ScreenState extends State<Education_Screen> {
                                     ),
                                   ),
                                   SizedBox(height: _height * 0.015),
-                                  Text("School/Collage/Institute",
+                                  Text("Percentage",
                                       style: MyTextStyle),
                                   SizedBox(height: _height * 0.015),
                                   TextFormField(

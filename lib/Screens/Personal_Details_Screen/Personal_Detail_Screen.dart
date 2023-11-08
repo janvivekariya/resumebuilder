@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:resumebuilder/Controller/PersonalDetailsScreenController/PersonalDetailsScreenController.dart';
-import 'package:resumebuilder/Controller/VariableController/VariableController.dart';
 import 'package:resumebuilder/Widget/backButton.dart';
 
 class Personal_Detail_Screen extends StatefulWidget {
@@ -54,10 +54,19 @@ class _Personal_Detail_ScreenState extends State<Personal_Detail_Screen> {
                       child: Column(
                         children: [
                           Container(
-                            color: Colors.white,
                             padding: const EdgeInsets.all(30),
                             margin: const EdgeInsets.only(
                                 left: 20, right: 20, bottom: 20, top: 30),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10.r),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.5),
+                                      offset: Offset(2, 2),
+                                      spreadRadius: 1.sp,
+                                      blurRadius: 1.sp)
+                                ]),
                             child: Form(
                               key: personalDetailsFormKey,
                               child: Column(

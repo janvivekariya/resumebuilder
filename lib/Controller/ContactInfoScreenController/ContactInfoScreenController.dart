@@ -56,14 +56,12 @@ class ContactInfoScreenController extends GetxController {
   forImageFromGallery({BuildContext? context}) async {
     XFile? pickerFile = await picker.pickImage(source: ImageSource.gallery);
     image = File(pickerFile!.path);
-    Navigator.of(context!).pop();
     update();
   }
 
   forImageFromCamera({BuildContext? context}) async {
     XFile? pickerFile = await picker.pickImage(source: ImageSource.camera);
     image = File(pickerFile!.path);
-    Navigator.of(context!).pop();
     update();
   }
 }

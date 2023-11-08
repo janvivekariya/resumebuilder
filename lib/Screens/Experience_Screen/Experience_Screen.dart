@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:resumebuilder/Controller/ExpereinceScreenController/ExpereinceScreenController.dart';
-import 'package:resumebuilder/Controller/VariableController/VariableController.dart';
 import 'package:resumebuilder/Widget/backButton.dart';
 
 class Experience_Screen extends StatefulWidget {
@@ -50,9 +50,18 @@ class _Experience_ScreenState extends State<Experience_Screen> {
                       child: Column(
                         children: [
                           Container(
-                            color: Colors.white,
                             margin: const EdgeInsets.only(
                                 top: 30, bottom: 20, right: 20, left: 20),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10.r),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.5),
+                                      offset: Offset(2, 2),
+                                      spreadRadius: 1.sp,
+                                      blurRadius: 1.sp)
+                                ]),
                             padding: const EdgeInsets.all(20),
                             child: Form(
                               key: experienceFormKey,

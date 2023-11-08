@@ -1,11 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:resumebuilder/Controller/ContactInfoScreenController/ContactInfoScreenController.dart';
-import 'package:resumebuilder/Controller/VariableController/VariableController.dart';
 import 'package:resumebuilder/Widget/backButton.dart';
 
 class Contact_Info_Screen extends StatefulWidget {
@@ -139,17 +136,29 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                           child: Column(
                             children: [
                               Container(
-                                height: _height * 0.48,
+                                height: _height * 0.58,
                                 margin: const EdgeInsets.all(20),
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 15),
-                                color: Colors.white,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10.r),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black.withOpacity(0.5),
+                                          offset: Offset(2, 2),
+                                          spreadRadius: 1.sp,
+                                          blurRadius: 1.sp)
+                                    ]),
                                 child: SingleChildScrollView(
                                   physics: const BouncingScrollPhysics(),
                                   child: Form(
                                     key: contactFormKey,
                                     child: Column(
                                       children: [
+                                        SizedBox(
+                                          height: 5.sp,
+                                        ),
                                         Row(
                                           children: [
                                             Expanded(
@@ -175,14 +184,19 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                                   contactinfocontroller.forName(
                                                       value: val);
                                                 },
-                                                decoration:
-                                                    const InputDecoration(
-                                                  hintText: "Name",
-                                                  label: Text("Name"),
-                                                ),
+                                                decoration: InputDecoration(
+                                                    hintText: "Name",
+                                                    label: Text("Name"),
+                                                    focusedBorder: OutlineInputBorder(
+                                                        borderRadius:BorderRadius.all(Radius.circular(10.r))),
+                                                    enabledBorder: OutlineInputBorder(
+                                                        borderRadius:BorderRadius.all(Radius.circular(10.r)))),
                                               ),
                                             ),
                                           ],
+                                        ),
+                                        SizedBox(
+                                          height: 5.sp,
                                         ),
                                         Row(
                                           children: [
@@ -212,13 +226,20 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                                 keyboardType:
                                                     TextInputType.emailAddress,
                                                 decoration:
-                                                    const InputDecoration(
+                                                     InputDecoration(
                                                   hintText: "Email",
                                                   label: Text("Email"),
+                                                         focusedBorder: OutlineInputBorder(
+                                                             borderRadius:BorderRadius.all(Radius.circular(10.r))),
+                                                        enabledBorder: OutlineInputBorder(
+                                                            borderRadius:BorderRadius.all(Radius.circular(10.r)))
                                                 ),
                                               ),
                                             ),
                                           ],
+                                        ),
+                                        SizedBox(
+                                          height: 5.sp,
                                         ),
                                         Row(
                                           children: [
@@ -248,13 +269,20 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                                 keyboardType:
                                                     TextInputType.phone,
                                                 decoration:
-                                                    const InputDecoration(
+                                                     InputDecoration(
                                                   hintText: "Phone",
                                                   label: Text("Phone"),
+                                                         focusedBorder: OutlineInputBorder(
+                                                             borderRadius:BorderRadius.all(Radius.circular(10.r))),
+                                                        enabledBorder: OutlineInputBorder(
+                                                            borderRadius:BorderRadius.all(Radius.circular(10.r)))
                                                 ),
                                               ),
                                             ),
                                           ],
+                                        ),
+                                        SizedBox(
+                                          height: 5.sp,
                                         ),
                                         Row(
                                           children: [
@@ -282,15 +310,22 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                                       .forAddress1(value: val);
                                                 },
                                                 decoration:
-                                                    const InputDecoration(
+                                                     InputDecoration(
                                                   hintText:
                                                       "Address (Street, Building No)",
                                                   label: Text(
                                                       "Address (Street, Building No)"),
+                                                         focusedBorder: OutlineInputBorder(
+                                                             borderRadius:BorderRadius.all(Radius.circular(10.r))),
+                                                        enabledBorder: OutlineInputBorder(
+                                                            borderRadius:BorderRadius.all(Radius.circular(10.r)))
                                                 ),
                                               ),
                                             ),
                                           ],
+                                        ),
+                                        SizedBox(
+                                          height: 5.sp,
                                         ),
                                         Row(
                                           children: [
@@ -307,13 +342,20 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                                       .forAddress2(value: val);
                                                 },
                                                 decoration:
-                                                    const InputDecoration(
+                                                     InputDecoration(
                                                   hintText: "Address Line 2",
                                                   label: Text("Address Line 2"),
+                                                         focusedBorder: OutlineInputBorder(
+                                                             borderRadius:BorderRadius.all(Radius.circular(10.r))),
+                                                        enabledBorder: OutlineInputBorder(
+                                                            borderRadius:BorderRadius.all(Radius.circular(10.r)))
                                                 ),
                                               ),
                                             ),
                                           ],
+                                        ),
+                                        SizedBox(
+                                          height: 5.sp,
                                         ),
                                         Row(
                                           children: [
@@ -330,9 +372,13 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                                       .forAddress3(value: val);
                                                 },
                                                 decoration:
-                                                    const InputDecoration(
+                                                     InputDecoration(
                                                   hintText: "Address Line 3",
                                                   label: Text("Address Line 3"),
+                                                         focusedBorder: OutlineInputBorder(
+                                                             borderRadius:BorderRadius.all(Radius.circular(10.r))),
+                                                        enabledBorder: OutlineInputBorder(
+                                                            borderRadius:BorderRadius.all(Radius.circular(10.r)))
                                                 ),
                                               ),
                                             ),
@@ -396,10 +442,19 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                           ),
                         ),
                         Container(
-                          color: Colors.white,
                           height: _height * 0.29,
                           width: _width,
                           margin: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10.r),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.5),
+                                    offset: Offset(2, 2),
+                                    spreadRadius: 1.sp,
+                                    blurRadius: 1.sp)
+                              ]),
                           alignment: Alignment.center,
                           child: Stack(
                             alignment: Alignment.bottomRight,
@@ -435,17 +490,19 @@ class _Contact_Info_ScreenState extends State<Contact_Info_Screen> {
                                             contactinfocontroller
                                                 .forImageFromGallery(
                                                     context: context);
+                                            Navigator.pop(context);
                                           },
                                           style: ElevatedButton.styleFrom(
                                             primary: MyColor,
                                           ),
-                                          child: const Text("gallery"),
+                                          child: const Text("Gallery"),
                                         ),
                                         ElevatedButton(
                                           onPressed: () async {
                                             contactinfocontroller
                                                 .forImageFromCamera(
                                                     context: context);
+                                            Navigator.pop(context);
                                           },
                                           style: ElevatedButton.styleFrom(
                                             primary: MyColor,

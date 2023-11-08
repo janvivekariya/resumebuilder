@@ -5,6 +5,7 @@ import 'package:resumebuilder/Screens/Education_Screen/Education_Screen.dart';
 import 'package:resumebuilder/Screens/Experience_Screen/Experience_Screen.dart';
 import 'package:resumebuilder/Screens/Home_Screen/Home_Screen.dart';
 import 'package:resumebuilder/Screens/Option_Screen/Option_Screen.dart';
+import 'package:resumebuilder/Screens/PDF_Screen/PDF_Screen.dart';
 import 'package:resumebuilder/Screens/Personal_Details_Screen/Personal_Detail_Screen.dart';
 import 'package:resumebuilder/Screens/Technical_Skill_Screen/Technical_Skills_Screen.dart';
 
@@ -21,7 +22,9 @@ class Routes {
       case Option_Screen.RouteName:
         return MaterialPageRoute(
           settings: settings,
-          builder: (context) => Option_Screen(),
+          builder: (context) => Option_Screen(
+            index: (settings.arguments as Map)["index"],
+          ),
         );
 
       case Contact_Info_Screen.RouteName:
@@ -58,6 +61,12 @@ class Routes {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => Technical_Skills_Screen(),
+        );
+
+      case PDF_Screen.RouteName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => PDF_Screen(),
         );
 
       default:
