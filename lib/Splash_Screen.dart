@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:resumebuilder/Screens/Build_Option_Screen/build_options_page.dart';
 
 class splash_screen extends StatefulWidget {
   const splash_screen({super.key});
@@ -29,6 +29,7 @@ class _splash_screenState extends State<splash_screen> {
 
   forNavigation() {
     Future.delayed(Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, Build_Options_Page.RouteName);
     });
   }
 }

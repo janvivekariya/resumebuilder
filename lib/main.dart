@@ -4,7 +4,7 @@ import 'package:resumebuilder/Splash_Screen.dart';
 import 'Routes/Route.dart' as route;
 
 void main() {
-  runApp(resume_builder());
+  runApp(const resume_builder());
 }
 
 class resume_builder extends StatefulWidget {
@@ -19,7 +19,7 @@ class _resume_builderState extends State<resume_builder> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       builder: (context, child) {
-        return MaterialApp(
+        return const MaterialApp(
           home: splash_screen(),
           onGenerateRoute: route.Routes.OnRouteGenerate,
         );

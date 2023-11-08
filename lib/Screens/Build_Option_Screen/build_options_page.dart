@@ -55,7 +55,7 @@ class _Build_Options_PageState extends State<Build_Options_Page> {
     return Scaffold(
       appBar: AppBar(
         leading: backButton(context),
-        backgroundColor: Color(0xff0475FF),
+        backgroundColor: const Color(0xff0475FF),
         title: const Text("Build Options"),
         centerTitle: true,
         elevation: 0,
