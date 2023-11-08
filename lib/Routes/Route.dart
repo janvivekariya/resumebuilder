@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:resumebuilder/Screens/Carrier_Onjective_Screen/Carrier_Objective_Screen.dart';
+import 'package:resumebuilder/Screens/Contact_Info_Screen/Contact_Info_Screen.dart';
 import 'package:resumebuilder/Screens/Home_Screen/Home_Screen.dart';
 import 'package:resumebuilder/Screens/Option_Screen/Option_Screen.dart';
 
@@ -16,6 +18,18 @@ class Routes {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => Option_Screen(),
+        );
+
+      case Contact_Info_Screen.RouteName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => Contact_Info_Screen(),
+        );
+
+      case Carrier_Objective_Screen.RouteName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => Contact_Info_Screen(),
         );
 
       default:

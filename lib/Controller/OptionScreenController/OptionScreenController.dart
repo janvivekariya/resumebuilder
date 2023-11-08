@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:resumebuilder/Screens/Contact_Info_Screen/Contact_Info_Screen.dart';
 
 class OptionScreenController extends GetxController{
 
@@ -7,6 +8,7 @@ class OptionScreenController extends GetxController{
       "id": 1,
       "option_name": "Contact info",
       "image": "assets/icons/contact_detail-removebg-preview (1).png",
+      "routename": Contact_Info_Screen.RouteName
     },
     {
       "id": 2,
