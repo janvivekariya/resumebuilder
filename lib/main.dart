@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:resumebuilder/Splash_Screen.dart';
 
 void main() {
   runApp(resume_builder());
@@ -18,6 +19,7 @@ class _resume_builderState extends State<resume_builder> {
     return ScreenUtilInit(
       builder: (context, child) {
         return MaterialApp(
+          home: splash_screen(),
         );
       },
     );
