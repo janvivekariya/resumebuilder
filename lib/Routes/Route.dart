@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resumebuilder/Screens/Home_Screen.dart';
 import 'package:resumebuilder/Splash_Screen.dart';
 
 class Routes {
@@ -10,6 +11,11 @@ class Routes {
           builder: (context) => splash_screen(),
         );
 
+      case homescreen.RouteName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => homescreen(),
+        );
 
 
 
