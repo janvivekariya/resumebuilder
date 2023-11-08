@@ -21,6 +21,7 @@ class _homescreenState extends State<homescreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          Navigator.pushNamed(context, Build_Options_Page.RouteName);
         },
         child: const Icon(
           Icons.add,
